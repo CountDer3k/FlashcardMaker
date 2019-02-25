@@ -12,7 +12,6 @@
 		F721AF2222082B5900AB76BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F721AF2022082B5900AB76BB /* Main.storyboard */; };
 		F721AF2422082B5C00AB76BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F721AF2322082B5C00AB76BB /* Assets.xcassets */; };
 		F721AF2722082B5C00AB76BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F721AF2522082B5C00AB76BB /* LaunchScreen.storyboard */; };
-		F721AF2F22082B8D00AB76BB /* psychology.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721AF2E22082B8D00AB76BB /* psychology.swift */; };
 		F746CB822223E4C400D2EEF6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F746CB802223E4C400D2EEF6 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +23,6 @@
 		F721AF2322082B5C00AB76BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F721AF2622082B5C00AB76BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F721AF2822082B5C00AB76BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F721AF2E22082B8D00AB76BB /* psychology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = psychology.swift; sourceTree = "<group>"; };
 		F746CB812223E4C400D2EEF6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +62,6 @@
 				F746CB862223E60000D2EEF6 /* Views */,
 				F746CB852223E5F300D2EEF6 /* Supporting Files */,
 				F721AF2822082B5C00AB76BB /* Info.plist */,
-				F721AF2E22082B8D00AB76BB /* psychology.swift */,
 			);
 			path = FlashcardMaker;
 			sourceTree = "<group>";
@@ -175,7 +172,6 @@
 			files = (
 				F721AF1F22082B5900AB76BB /* ViewController.swift in Sources */,
 				F721AF1D22082B5900AB76BB /* AppDelegate.swift in Sources */,
-				F721AF2F22082B8D00AB76BB /* psychology.swift in Sources */,
 				F746CB822223E4C400D2EEF6 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
