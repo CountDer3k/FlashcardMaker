@@ -24,10 +24,13 @@ class MainPageViewController: UIViewController {
     
     @IBAction func toQuestions(_ sender: Any) {
         print("going to segue")
-        performSegue(withIdentifier: "toQuestions", sender: self)
+        performSegue(withIdentifier: "maintoQuestions", sender: self)
     }
     
     
+    @IBAction func toSettings(_ sender: Any) {
+        performSegue(withIdentifier: "mainToSettings", sender: self)
+    }
     
     /*
     // MARK: - Navigation
