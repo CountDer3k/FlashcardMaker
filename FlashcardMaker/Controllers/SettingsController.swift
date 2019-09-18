@@ -23,6 +23,7 @@ class SettingsController: UIViewController {
     
     @IBAction func purpleID(_ sender: Any) {
         changePageColors(86.0,115.0,222.0, 1.0)
+        changeTextColors(80,110,200,1)
     }
     
     @IBAction func redID(_ sender: Any) {
@@ -41,14 +42,24 @@ class SettingsController: UIViewController {
         changePageColors(247,202,74,1)
     }
     
+    /*
+     Takes in an RGBA set of doubles and change the background of the views to the color passed in
+     */
     func changePageColors(_ r: Double, _ g: Double, _ b: Double, _ a: Double){
         // For some reason all RGB colors need to be divided by 255 to work properly
         let color = UIColor(red: CGFloat(r/255), green: CGFloat(g/255),blue: CGFloat(b/255), alpha:CGFloat(a))
-        view.backgroundColor = color
-        colorThemeLabel.textColor = UIColor(red: CGFloat(r/255), green: CGFloat((g/2)/255), blue: CGFloat((b/3)/255), alpha: CGFloat(a))
         
+        view.backgroundColor = color
+        
+        
+        MainPageViewController.init().view.backgroundColor = color
     }
     
+    func changeTextColors(_ r: Double, _ g: Double, _ b: Double, _ a: Double){
+        let textColor = UIColor(red: CGFloat(r/255), green: CGFloat((g/2)/255), blue: CGFloat((b/3)/255), alpha: CGFloat(a))
+        
+        colorThemeLabel.textColor = textColor
+    }
     
     
     @IBAction func goBack(_ sender: Any) {

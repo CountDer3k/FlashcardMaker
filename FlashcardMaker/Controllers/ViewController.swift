@@ -154,6 +154,9 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func toMain(_ sender: Any) {
+        performSegue(withIdentifier: "questionsToMain", sender: self)
+    }
     
     
 }
