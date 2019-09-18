@@ -13,6 +13,7 @@
 		F721AF2422082B5C00AB76BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F721AF2322082B5C00AB76BB /* Assets.xcassets */; };
 		F721AF2722082B5C00AB76BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F721AF2522082B5C00AB76BB /* LaunchScreen.storyboard */; };
 		F746CB822223E4C400D2EEF6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F746CB802223E4C400D2EEF6 /* Model.xcdatamodeld */; };
+		F7F5695A23328C6600AAA09C /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F5695923328C6600AAA09C /* MainPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F721AF2622082B5C00AB76BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F721AF2822082B5C00AB76BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F746CB812223E4C400D2EEF6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F7F5695923328C6600AAA09C /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				F721AF1E22082B5900AB76BB /* ViewController.swift */,
+				F7F5695923328C6600AAA09C /* MainPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7F5695A23328C6600AAA09C /* MainPageViewController.swift in Sources */,
 				F721AF1F22082B5900AB76BB /* ViewController.swift in Sources */,
 				F721AF1D22082B5900AB76BB /* AppDelegate.swift in Sources */,
 				F746CB822223E4C400D2EEF6 /* Model.xcdatamodeld in Sources */,
@@ -326,6 +330,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = D3.FlashcardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -345,6 +350,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = D3.FlashcardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
