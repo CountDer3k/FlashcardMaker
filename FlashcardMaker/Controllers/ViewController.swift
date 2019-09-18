@@ -51,21 +51,71 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Used to know if lists are even when I add a new one (checks questions & answers are equal)
         print("\(nutrition_q1.count) & \(nutrition_a1.count)")
-        // Sets up the original list into a temporary list to keep OG list intact
         
+        // Sets up the original list into a temporary list to keep OG list intact
+        setupQuestionsAndAnswers()
+    }
+    
+    //-----------------------------
+     // Button functions
+     //-----------------------------
+    
+    /* What happens when the 'next' button is pressed */
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        nextQuestion()
+    }
+    
+    /* What happens when the 'answer' button is pressed */
+    @IBAction func answerButton(_ sender: Any) {
+       showAnswer()
+    }
+    
+    
+    /* What happens when the RESET button is pressed */
+    @IBAction func ResetQuestions(_ sender: Any) {
+        
+        // Resets variables
+        resetVariable()
+        
+        // Adds the questions back into memory
+        setupQuestionsAndAnswers()
+        
+        // updates the labels
+        ProgressLabel.text = "\(counter)/\(questionCounter)"
+        questionSlotLabel.text = "Press 'Next' To Begin"
+        answerSlot.text = "???"
+    }
+    
+    
+    //---------------------------------------------
+    // Non-Button Function (Excluding viewDidLoad()
+    //----------------------------------------------
+
+    /* Sets up a random generator */
+    func random(_ max : Int) -> Int{
+        let result = Int.random(in: 0 ... max-1)
+        return result
+    }
+    
+    /* Function to keep the question counter on the top right accurate */
+    func questionCounterTracker() {
+        counter = counter + 1
+        ProgressLabel.text = "\(counter)/\(questionCounter)"
+    }
+    
+    /* Supposed to setup questions and answers based on parameter passed in from the main page
+     
+     //TODO: send information form main page to select questions to load up
+     
+     */
+    func setupQuestionsAndAnswers(){
         active_Module_q = nutrition_q1
         active_Module_a = nutrition_a1
         questionCounter = nutrition_q1.count
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    /*
-     Implement a way to move questions out of list without deletion
-     to implement a back button to retrieve questions;
-     maybe use a randomizer to randomly add items from original list to new list
-     and then read them from start to finish
-     */
-    @IBAction func nextButtonPressed(_ sender: UIButton) {
+    
+    /* Shows the next question on the screen and handles updating all labels */
+    func nextQuestion(){
         //If a random number has been set (program has started) & list isn't empty, remove last item used
         if randomNumberHolder != -1 && !active_Module_q.isEmpty{
             active_Module_q.remove(at: randomNumberHolder)
@@ -89,22 +139,11 @@ class ViewController: UIViewController {
             usedRandom.append(randomNumberHolder)
             answerSlot.text = "???"
         }
-        
     }
     
-    // Function to keep the question counter on the top right accurate
-    func questionCounterTracker() {
-        counter = counter + 1
-        ProgressLabel.text = "\(counter)/\(questionCounter)"
-    }
-    
-    /*
-     implement a back button here
-     */
-    
-    
-    @IBAction func answerButton(_ sender: Any) {
-        // Load Answer into the answer slot
+    /* Load Answer into the answer slot */
+    func showAnswer(){
+        // If program hasn't started, list amount of questions and amount of answers
         if randomNumberHolder == -1{
             answerSlot.text = "Que:\(active_Module_q.count) Ans:\(active_Module_a.count)"
             return
@@ -115,25 +154,14 @@ class ViewController: UIViewController {
             answerSlot.text = "Finished All Questions"
             return
         }
+        // Show answer to the question
         else{
         answerSlot.text = active_Module_a[randomNumberHolder]
         }
-        
     }
     
-    /*
-     Sets up a random generator
-     */
-    func random(_ max : Int) -> Int{
-        let result = Int.random(in: 0 ... max-1)
-        return result
-    }
-
-    /*
-     Resets the questions being asked
-     --Currently only works on hardcoded questions--
-     */
-    @IBAction func ResetQuestions(_ sender: Any) {
+    /* Resets the variables as if the program had just opened */
+    func resetVariable(){
         // Resets the question and answer arrays
         active_Module_q = [""]
         active_Module_a = [""]
@@ -141,23 +169,30 @@ class ViewController: UIViewController {
         randomNumberHolder = -1
         counter = 0
         questionCounter = 0
-        
-        // Adds the questions back into memory
-        active_Module_q = nutrition_q1
-        active_Module_a = nutrition_a1
-        questionCounter = nutrition_q1.count
-        
-        // updates the labels
-        ProgressLabel.text = "\(counter)/\(questionCounter)"
-        questionSlotLabel.text = "Press 'Next' To Begin"
-        answerSlot.text = "???"
     }
     
+    //-----------------------------
+    // Segue events
+    //-----------------------------
     
     @IBAction func toMain(_ sender: Any) {
         performSegue(withIdentifier: "questionsToMain", sender: self)
     }
     
     
+    //-----------------------------
+    // Gestue Events
+    //-----------------------------
+    
+    /* What happens when a user swipes to the left on the answer view */
+    @IBAction func SwipeLeft(_ sender: Any) {
+        print("went back")
+    }
+    
+    /* What happens when a user swipes to the right on the answer view */
+    @IBAction func SwipeRight(_ sender: Any) {
+        // Runs the next question command
+        nextQuestion()
+    }
 }
 
