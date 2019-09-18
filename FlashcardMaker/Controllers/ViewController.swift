@@ -56,7 +56,6 @@ class ViewController: UIViewController {
         active_Module_q = nutrition_q1
         active_Module_a = nutrition_a1
         questionCounter = nutrition_q1.count
-        print("working")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -67,7 +66,6 @@ class ViewController: UIViewController {
      and then read them from start to finish
      */
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        print("entered function")
         //If a random number has been set (program has started) & list isn't empty, remove last item used
         if randomNumberHolder != -1 && !active_Module_q.isEmpty{
             active_Module_q.remove(at: randomNumberHolder)
@@ -106,7 +104,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func answerButton(_ sender: Any) {
-        print("entered answer button")
         // Load Answer into the answer slot
         if randomNumberHolder == -1{
             answerSlot.text = "Que:\(active_Module_q.count) Ans:\(active_Module_a.count)"
@@ -132,8 +129,30 @@ class ViewController: UIViewController {
         return result
     }
 
+    /*
+     Resets the questions being asked
+     --Currently only works on hardcoded questions--
+     */
+    @IBAction func ResetQuestions(_ sender: Any) {
+        // Resets the question and answer arrays
+        active_Module_q = [""]
+        active_Module_a = [""]
+        // Resets the random number and counters
+        randomNumberHolder = -1
+        counter = 0
+        questionCounter = 0
+        
+        // Adds the questions back into memory
+        active_Module_q = nutrition_q1
+        active_Module_a = nutrition_a1
+        questionCounter = nutrition_q1.count
+        
+        // updates the labels
+        ProgressLabel.text = "\(counter)/\(questionCounter)"
+        questionSlotLabel.text = "Press 'Next' To Begin"
+        answerSlot.text = "???"
+    }
     
-
     
     
     

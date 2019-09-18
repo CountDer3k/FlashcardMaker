@@ -10,6 +10,10 @@ import UIKit
 
 class MainPageViewController: UIViewController {
 
+    // Exam segement for nutrition
+    @IBOutlet weak var examSegments: UISegmentedControl!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
