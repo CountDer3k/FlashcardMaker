@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F705BB412334179D0081FB2B /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F705BB402334179D0081FB2B /* Modules.swift */; };
 		F721AF1D22082B5900AB76BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721AF1C22082B5900AB76BB /* AppDelegate.swift */; };
 		F721AF1F22082B5900AB76BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721AF1E22082B5900AB76BB /* ViewController.swift */; };
 		F721AF2222082B5900AB76BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F721AF2022082B5900AB76BB /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F705BB402334179D0081FB2B /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		F721AF1922082B5900AB76BB /* FlashcardMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashcardMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F721AF1C22082B5900AB76BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F721AF1E22082B5900AB76BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				F721AF1C22082B5900AB76BB /* AppDelegate.swift */,
+				F705BB402334179D0081FB2B /* Modules.swift */,
 				F746CB832223E5C700D2EEF6 /* Controllers */,
 				F746CB842223E5D900D2EEF6 /* DataModel */,
 				F746CB862223E60000D2EEF6 /* Views */,
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7F5695A23328C6600AAA09C /* MainPageViewController.swift in Sources */,
+				F705BB412334179D0081FB2B /* Modules.swift in Sources */,
 				F754650323329DAB00C6121C /* SettingsController.swift in Sources */,
 				F721AF1F22082B5900AB76BB /* ViewController.swift in Sources */,
 				F721AF1D22082B5900AB76BB /* AppDelegate.swift in Sources */,
@@ -335,7 +339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5.3;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = D3.FlashcardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -356,7 +360,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5.3;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = D3.FlashcardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
