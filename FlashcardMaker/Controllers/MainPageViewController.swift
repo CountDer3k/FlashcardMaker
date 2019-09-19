@@ -22,10 +22,9 @@ class MainPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // Sets up the question and answers array
         qAndA = randomizeArrays(nutrition_q1, nutrition_a1)
-    
     }
     
     //---------------------
@@ -66,7 +65,6 @@ class MainPageViewController: UIViewController {
     //---------------------
     
     @IBAction func toQuestions(_ sender: Any) {
-        print("going to segue")
         performSegue(withIdentifier: "maintoQuestions", sender: self)
     }
     
@@ -77,9 +75,14 @@ class MainPageViewController: UIViewController {
     /* overrides the prepare for seugues function to pass data to the other screen */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        // sets up the controller based on the destination of viewController
-        let vc = segue.destination as! ViewController
-        // send all relevant information to viewController
-        vc.qAndA = qAndA
+        if segue.identifier == "mainToSettings" {
+            
+        }
+        else{
+            // sets up the controller based on the destination of viewController
+            let vc = segue.destination as! ViewController
+            // send all relevant information to viewController
+            vc.qAndA = qAndA
+        }
     }
 }

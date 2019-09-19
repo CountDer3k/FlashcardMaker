@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Used to know if lists are even when I add a new one (checks questions & answers are equal)
-        print("\(nutrition_q1.count) & \(nutrition_a1.count)")
+        //print("\(nutrition_q1.count) & \(nutrition_a1.count)")
         
         // Sets up the original list into a temporary list to keep OG list intact
         setupQuestionsAndAnswers()
