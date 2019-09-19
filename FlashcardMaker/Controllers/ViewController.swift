@@ -173,5 +173,11 @@ class ViewController: UIViewController {
         // Runs the next question command
         nextQuestion()
     }
+    
+    
+    @IBAction func Tap(_ sender: Any) {
+        showAnswer()
+    }
+    
 }
 

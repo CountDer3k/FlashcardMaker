@@ -116,6 +116,7 @@
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zWp-mX-J29" appends="YES" id="t5D-8W-ngo"/>
                                     <outletCollection property="gestureRecognizers" destination="sp1-9c-z5u" appends="YES" id="rV1-aZ-7Va"/>
+                                    <outletCollection property="gestureRecognizers" destination="cyS-hr-JF8" appends="YES" id="SYH-d7-5Hu"/>
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUO-Yl-71d">
@@ -243,6 +244,11 @@
                         <action selector="SwipeRight:" destination="BYZ-38-t0r" id="dQp-bP-iNL"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="cyS-hr-JF8" userLabel="AnswerView Tap">
+                    <connections>
+                        <action selector="Tap:" destination="BYZ-38-t0r" id="ROy-NP-4u3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
         </scene>
@@ -385,7 +391,7 @@
         <image name="white-back-icon-14.jpg" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Gl-Yw-KOg"/>
+        <segue reference="F02-vy-ZRh"/>
         <segue reference="kGL-Ys-x15"/>
         <segue reference="Xcw-in-H4Z"/>
     </inferredMetricsTieBreakers>
