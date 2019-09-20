@@ -10,9 +10,9 @@ import UIKit
 
 class MainPageViewController: UIViewController {
 
-     //---------------------
-      // Questions & Answers
-      //---------------------
+    //---------------------
+    // Questions & Answers
+    //---------------------
 
     
     // Exam segement for nutrition
@@ -87,7 +87,8 @@ class MainPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "mainToSettings" {
-            
+            let sc = segue.destination as! SettingsController
+            sc.lastCaller = "Main"
         }
         else{
             // sets up the controller based on the destination of viewController

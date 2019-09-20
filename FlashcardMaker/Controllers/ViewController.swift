@@ -171,6 +171,20 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "questionsToMain", sender: self)
     }
     
+    @IBAction func toSettings(_ sender: Any) {
+        //TODO: fix this so that when it segues back to this view didLoad doesn't have an Index Out of Range
+        //performSegue(withIdentifier: "questionsToSettings", sender: self)
+    }
+    
+    
+    /* overrides the prepare for seugues function to pass data to the other screen */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "questionsToSettings" {
+            let sc = segue.destination as! SettingsController
+            sc.lastCaller = "Questions"
+        }
+    }
     
     //-----------------------------
     // Gestue Events
@@ -179,7 +193,6 @@ class ViewController: UIViewController {
     /* What happens when a user swipes to the left on the answer view */
     @IBAction func SwipeLeft(_ sender: Any) {
         nextQuestion()
-        
     }
     
     /* What happens when a user swipes to the right on the answer view */
@@ -187,7 +200,6 @@ class ViewController: UIViewController {
         // Runs the next question command
         previousQuestion()
     }
-    
     
     @IBAction func Tap(_ sender: Any) {
         showAnswer()

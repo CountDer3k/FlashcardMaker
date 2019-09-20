@@ -12,11 +12,10 @@ class SettingsController: UIViewController {
 
     @IBOutlet weak var colorThemeLabel: UILabel!
     @IBOutlet weak var themeLabel: UILabel!
-    
+    var lastCaller = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Sets background color and text
         view.backgroundColor = currentColor
     }
@@ -108,8 +107,12 @@ class SettingsController: UIViewController {
     // Segues
     //---------------------
     @IBAction func goBack(_ sender: Any) {
-        performSegue(withIdentifier: "settingsToMain", sender: self)
+        if lastCaller == "Main"{
+            performSegue(withIdentifier: "settingsToMain", sender: self)
+        }
+        if lastCaller == "Questions"{
+            performSegue(withIdentifier: "settingsToQuestions", sender: self)
+        }
     }
-    
     
 }
