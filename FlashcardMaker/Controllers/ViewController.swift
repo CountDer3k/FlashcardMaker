@@ -23,13 +23,25 @@ class ViewController: UIViewController {
     var usedRandom = [Int]()
     @IBOutlet weak var answerSlot: UILabel!
     @IBOutlet weak var questionSlotLabel: UILabel!
-    
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var answerButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Used to know if lists are even when I add a new one (checks questions & answers are equal)
         //print("\(nutrition_q1.count) & \(nutrition_a1.count)")
+        
+        // Sets background color and text
+        view.backgroundColor = currentColor
+        questionSlotLabel.backgroundColor = currentLabelColor
+        answerSlot.backgroundColor = currentLabelColor
+        nextButton.backgroundColor = currentButtonColor
+        answerButton.backgroundColor = currentButtonColor
+        headingLabel?.textColor = currentTextColor
+        questionSlotLabel.textColor = currentTextColor
+        answerSlot.textColor = currentTextColor
+        ProgressLabel.textColor = currentTextColor
         
         // Sets up the original list into a temporary list to keep OG list intact
         setupQuestionsAndAnswers()
@@ -125,8 +137,9 @@ class ViewController: UIViewController {
 //    /* Load Answer into the answer slot */
     func showAnswer(){
         // If program hasn't started, list amount of questions and amount of answers
-        if(counter == 0){
+        if(counter < 1){
             answerSlot.text = "Que:\(active_Module_q.count) Ans:\(active_Module_a.count)"
+            return
         }
         // Once all questions have been shown
         if counter == active_Module_q.count {
@@ -165,13 +178,14 @@ class ViewController: UIViewController {
     
     /* What happens when a user swipes to the left on the answer view */
     @IBAction func SwipeLeft(_ sender: Any) {
-        previousQuestion()
+        nextQuestion()
+        
     }
     
     /* What happens when a user swipes to the right on the answer view */
     @IBAction func SwipeRight(_ sender: Any) {
         // Runs the next question command
-        nextQuestion()
+        previousQuestion()
     }
     
     

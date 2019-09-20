@@ -20,9 +20,20 @@ class MainPageViewController: UIViewController {
     // An array that holds an array; used to hold shuffled question and answer arrays
     var qAndA = [Array<String>]()
     
+    @IBOutlet weak var nutritionLabel: UILabel!
+    @IBOutlet weak var goButton: UIButton!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        // Sets background color and text
+        view.backgroundColor = currentColor
+        nutritionLabel.textColor = currentTextColor
+        
         // Sets up the question and answers array
         qAndA = randomizeArrays(nutrition_q1, nutrition_a1)
     }

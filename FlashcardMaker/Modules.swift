@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 /* Takes in a question and an answer array , randomizes them and returns an array of both arrays */
 func randomizeArrays(_ q: [String], _ a: [String]) -> [Array<String>]{
@@ -34,6 +34,18 @@ func random(_ max : Int) -> Int{
     return result
 }
 
+func convertColors(_ r: Double, _ g: Double, _ b: Double, _ a: Double) -> UIColor{
+    // For some reason all RGB colors need to be divided by 255 to work properly
+    return UIColor(red: CGFloat(r/255), green: CGFloat(g/255),blue: CGFloat(b/255), alpha:CGFloat(a))
+}
+
+//--------------------
+// Global Variables
+//--------------------
+var currentColor = convertColors(86, 115, 222, 1)
+var currentLabelColor = convertColors(79, 76, 218, 1)
+var currentButtonColor = convertColors(164, 248, 255, 1)
+var currentTextColor = convertColors(255, 153, 48, 1)
 
 
 
