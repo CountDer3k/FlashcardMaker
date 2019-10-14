@@ -9,11 +9,6 @@
 import UIKit
 
 class MainPageViewController: UIViewController {
-
-    //---------------------
-    // Questions & Answers
-    //---------------------
-
     
     // Exam segement for nutrition
     @IBOutlet weak var examSegments: UISegmentedControl!
@@ -60,6 +55,7 @@ class MainPageViewController: UIViewController {
         }
     }
     
+    
     //---------------------
     //Button functions
     //---------------------
@@ -68,7 +64,6 @@ class MainPageViewController: UIViewController {
     @IBAction func examChangeButton(_ sender: UISegmentedControl) {
         changeExamQuestion(sender.selectedSegmentIndex)
     }
-    
 
     
     //---------------------

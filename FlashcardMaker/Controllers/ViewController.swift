@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionSlotLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var answerButton: UIButton!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +78,10 @@ class ViewController: UIViewController {
         ProgressLabel.text = "\(counter)/\(questionCounter)"
         questionSlotLabel.text = "Press 'Next' To Begin"
         answerSlot.text = "???"
+        headingLabel!.text = "Question:"
     }
+    
+   
     
     
     //---------------------------------------------
@@ -162,6 +165,7 @@ class ViewController: UIViewController {
         counter = 0
         questionCounter = 0
     }
+    
     
     //-----------------------------
     // Segue events
