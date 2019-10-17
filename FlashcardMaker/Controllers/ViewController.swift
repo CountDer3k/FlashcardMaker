@@ -102,9 +102,9 @@ class ViewController: UIViewController {
     
     /* Sets the question back up */
     func setupQuestionsAndAnswers(){
-        active_Module_q = qAndA[0]
-        active_Module_a = qAndA[1]
-        questionCounter = active_Module_q.count
+            active_Module_q = qAndA[0]
+            active_Module_a = qAndA[1]
+            questionCounter = active_Module_q.count
     }
     
     /* Shows the next question on the screen and handles updating all labels */
@@ -143,11 +143,6 @@ class ViewController: UIViewController {
         if(counter < 1){
             answerSlot.text = "Que:\(active_Module_q.count) Ans:\(active_Module_a.count)"
             return
-        }
-        // Once all questions have been shown
-        if counter == active_Module_q.count {
-            answerSlot.text = "Finished All Questions"
-            questionSlotLabel.text = "Finished All Questions"
         }
         // Shows answer to current question
         else{

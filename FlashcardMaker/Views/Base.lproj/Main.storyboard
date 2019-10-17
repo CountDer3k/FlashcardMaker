@@ -34,18 +34,6 @@
                                     <action selector="toQuestions:" destination="0Ql-Hk-5RT" eventType="touchUpInside" id="pZJ-BQ-XqL"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sep-5p-CHq">
-                                <rect key="frame" x="107" y="220" width="200" height="32"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <segments>
-                                    <segment title="Exam 1"/>
-                                    <segment title="Exam 2"/>
-                                    <segment title="Exam 3"/>
-                                </segments>
-                                <connections>
-                                    <action selector="examChangeButton:" destination="0Ql-Hk-5RT" eventType="valueChanged" id="MFP-k9-rTP"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiX-cl-lxA" userLabel="Settings Button">
                                 <rect key="frame" x="356" y="63" width="30" height="30"/>
                                 <constraints>
@@ -58,27 +46,38 @@
                                     <action selector="toSettings:" destination="0Ql-Hk-5RT" eventType="touchUpInside" id="MZg-6j-yrh"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mep-hA-TLn">
+                                <rect key="frame" x="35" y="238" width="345" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="345" id="MRk-c8-AWj"/>
+                                    <constraint firstAttribute="height" constant="80" id="RNb-Bt-pAd"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="0Ql-Hk-5RT" id="ES8-FD-3S0"/>
+                                    <outlet property="delegate" destination="0Ql-Hk-5RT" id="TLp-2B-mI2"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.40392156862745099" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="sep-5p-CHq" firstAttribute="leading" secondItem="93d-4s-cHW" secondAttribute="leading" constant="107" id="57Y-QM-ZTn"/>
+                            <constraint firstItem="mep-hA-TLn" firstAttribute="top" secondItem="hF6-2N-4T4" secondAttribute="bottom" constant="46" id="B4U-hC-8zl"/>
                             <constraint firstItem="WeN-Xu-5Zc" firstAttribute="leading" secondItem="93d-4s-cHW" secondAttribute="leading" constant="160" id="G00-DB-2dZ"/>
                             <constraint firstItem="93d-4s-cHW" firstAttribute="trailing" secondItem="WeN-Xu-5Zc" secondAttribute="trailing" constant="160" id="M6v-Vp-dlq"/>
-                            <constraint firstItem="93d-4s-cHW" firstAttribute="trailing" secondItem="sep-5p-CHq" secondAttribute="trailing" constant="107" id="MoV-jc-SRb"/>
                             <constraint firstItem="93d-4s-cHW" firstAttribute="bottom" secondItem="WeN-Xu-5Zc" secondAttribute="bottom" constant="367" id="VfY-6g-zrc"/>
-                            <constraint firstItem="sep-5p-CHq" firstAttribute="top" secondItem="hF6-2N-4T4" secondAttribute="bottom" constant="28" id="ac8-DM-i7A"/>
+                            <constraint firstItem="mep-hA-TLn" firstAttribute="leading" secondItem="93d-4s-cHW" secondAttribute="leading" constant="35" id="abi-C4-cv6"/>
                             <constraint firstItem="DiX-cl-lxA" firstAttribute="leading" secondItem="93d-4s-cHW" secondAttribute="leading" constant="356" id="b3D-wB-kVT"/>
                             <constraint firstItem="DiX-cl-lxA" firstAttribute="top" secondItem="93d-4s-cHW" secondAttribute="top" constant="19" id="brb-WG-vc7"/>
                             <constraint firstItem="93d-4s-cHW" firstAttribute="trailing" secondItem="hF6-2N-4T4" secondAttribute="trailing" constant="95" id="dWd-d9-uFR"/>
                             <constraint firstItem="hF6-2N-4T4" firstAttribute="top" secondItem="93d-4s-cHW" secondAttribute="top" constant="108" id="hu0-zy-bYW"/>
                             <constraint firstItem="hF6-2N-4T4" firstAttribute="leading" secondItem="93d-4s-cHW" secondAttribute="leading" constant="95" id="kQz-LS-9ae"/>
+                            <constraint firstItem="93d-4s-cHW" firstAttribute="trailing" secondItem="mep-hA-TLn" secondAttribute="trailing" constant="34" id="oGb-QE-BBJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="93d-4s-cHW"/>
                     </view>
                     <connections>
-                        <outlet property="examSegments" destination="sep-5p-CHq" id="tPy-nj-BcF"/>
                         <outlet property="goButton" destination="WeN-Xu-5Zc" id="oK9-kd-sCb"/>
                         <outlet property="nutritionLabel" destination="hF6-2N-4T4" id="xis-le-6jh"/>
+                        <outlet property="questionPicker" destination="mep-hA-TLn" id="x1q-Yn-7em"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="maintoQuestions" modalPresentationStyle="overFullScreen" id="kGL-Ys-x15"/>
                         <segue destination="Ho0-cz-WUR" kind="presentation" identifier="mainToSettings" modalPresentationStyle="fullScreen" id="3Gl-Yw-KOg"/>
                     </connections>
@@ -317,7 +316,7 @@
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" backgroundImage="square" catalog="system">
-                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="whiteID:" destination="Ho0-cz-WUR" eventType="touchUpInside" id="WFQ-aI-4KD"/>
@@ -328,7 +327,7 @@
                                                         <color key="backgroundColor" red="0.23921568627450979" green="0.23921568627450979" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" red="0.2397419727" green="0.2397419727" blue="0.2397419727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" backgroundImage="square" catalog="system">
-                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="blackID:" destination="Ho0-cz-WUR" eventType="touchUpInside" id="gjG-Kg-6NK"/>
@@ -339,7 +338,7 @@
                                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" backgroundImage="square" catalog="system">
-                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="blueID:" destination="Ho0-cz-WUR" eventType="touchUpInside" id="d4x-GD-V1g"/>
@@ -350,7 +349,7 @@
                                                         <color key="backgroundColor" red="0.74500317258883242" green="0.43617631015738284" blue="0.0054261172750544994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" red="0.74500317260000004" green="0.43617631019999997" blue="0.0054261172749999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" backgroundImage="square" catalog="system">
-                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="orangeID:" destination="Ho0-cz-WUR" eventType="touchUpInside" id="BIi-CJ-djZ"/>
@@ -361,7 +360,7 @@
                                                         <color key="backgroundColor" red="0.33714371920000002" green="0.44973778720000002" blue="0.87057745460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" red="0.33714371920000002" green="0.44973778720000002" blue="0.87057745460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" backgroundImage="square" catalog="system">
-                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="purpleID:" destination="Ho0-cz-WUR" eventType="touchUpInside" id="4Bj-YX-FIO"/>

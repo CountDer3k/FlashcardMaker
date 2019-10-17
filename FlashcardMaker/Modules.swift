@@ -47,6 +47,10 @@ var currentLabelColor = convertColors(79, 76, 218, 1)
 var currentButtonColor = convertColors(164, 248, 255, 1)
 var currentTextColor = convertColors(255, 153, 48, 1)
 var currentTheme = "Magenta"
+var hasTextFile = -1
+var questionTitleList = [String]()
+var questionsListArray = [[String]]()
+var answersListArray = [[String]]()
 
 
 //--------------------
