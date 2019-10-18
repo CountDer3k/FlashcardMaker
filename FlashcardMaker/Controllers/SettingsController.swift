@@ -108,131 +108,77 @@ class SettingsController: UIViewController {
     //Download File Functions
     //-----------------------
     
+    func overrideDownloadedFile(_ backup: Bool){
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent("questions.txt") {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                print("FILE AVAILABLE")
+                // if it exists, then change the name to a backup
+                changeFileName(backup)
+                // Download new file
+                downloadQuestionsFile()
+                //Delete file backup file
+                deleteBackupFile()
+            } else {
+                print("FILE NOT AVAILABLE")
+                // Continue the download
+                downloadQuestionsFile()
+            }
+        } else {
+            print("FILE PATH NOT AVAILABLE")
+        }
+    }
+
+    
+    
     /* Function to download the questions file from my google drive*/
     func downloadQuestionsFile(){
-            // Create destination URL
+        // Create destination URL
         
-            // if file exists, then change the name, until the new one is downloaded, then delete the old one
-            // If the download fails, rename the old file to one can be used
+        // if file exists, then change the name, until the new one is downloaded, then delete the old one
+        // If the download fails, rename the old file to one can be used
             
-            let documentsUrl:URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL!
-            let destinationFileUrl = documentsUrl.appendingPathComponent("questions.txt")
+        let documentsUrl:URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL!
+        let destinationFileUrl = documentsUrl.appendingPathComponent("questions.txt")
                
-            //Create URL to the source file you want to download
-            let fileURL = URL(string: "https://drive.google.com/uc?id=1oS654WdhWcvo4hJWdBrln7kpmVaC8XUu&export=download")
-
-            let sessionConfig = URLSessionConfiguration.default
-            let session = URLSession(configuration: sessionConfig)
-            let request = URLRequest(url:fileURL!)
-            let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
-                if let tempLocalUrl = tempLocalUrl, error == nil {
-                    // Success
-                    if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                        self.showAlert("Successfully updated questions")
+        //Create URL to the source file you want to download
+        let fileURL = URL(string: "https://drive.google.com/uc?id=1oS654WdhWcvo4hJWdBrln7kpmVaC8XUu&export=download")
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig)
+        let request = URLRequest(url:fileURL!)
+        let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
+            if let tempLocalUrl = tempLocalUrl, error == nil {
+                // Success
+                if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                    self.showAlert("Successfully updated questions")
                     print("Successfully downloaded. Status code: \(statusCode)")
-                    }
-                       
+                        
+                    //*********************************
+                    // Moves the file to the documents section
                     do {
                         try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
-                    } catch (let writeError) {
-                    self.showAlert("Something went wrong. Text Der3k for file")
+                    }
+                    catch (let writeError) {
+                        self.showAlert("Something went wrong. Text Der3k for file")
                         print("Error creating a file D3 \(destinationFileUrl) : \(writeError)")
                     }
                 }
-                else {
-                    print("Error took place while downloading a file. Error description: %@", error?.localizedDescription);
-                }
             }
-            task.resume()
-        readFile()
-        self.showAlert("Successfully updated questions")
-        hasTextFile = 0
+            else {
+                print("Error took place while downloading a file. Error description: %@", error?.localizedDescription as Any);
+                // restore backup file
+                changeFileName(true)
+            }
+        }
+        task.resume()
     }
 
-    /* Function to read a "questions.txt" file from the documents directory.
-     Currently still needs to be able to read line by line & then export each line
-     over to the modules array to be able to use the questions in the text file as questions
-     on the actual program*/
-    func readFile(){
-        print("Begin reading")
-        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let fileURL = DocumentDirURL.appendingPathComponent("questions").appendingPathExtension("txt")
-        do {
-            // Read the file contents and saves it to a giant separated string
-            let readString = try String(contentsOf: fileURL, encoding: .utf8)
-            let myStrings = readString.components(separatedBy: .newlines)
-            
-            getQuestions(myStrings)
-        }
-        catch let error as NSError {
-            //print("big chuck of error codes")
-            //print("Failed reading from URL: \(fileURL), Error: " + error.localizedDescription)
-        }
-        
-    }
+
     
-    func getQuestions(_ s : [String]){
-        // Clears the questionList Array
-        questionTitleList.removeAll()
-        questionsListArray.removeAll()
-        answersListArray.removeAll()
-        var isAnswer = false
-        var qArray = [String]()
-        var aArray = [String]()
-        
-        // iterates through every items in s (the file whose contents were read)
-        for i in s {
-            // Takes the first 2 letters and checks for the special symbols that define its a title '##'
-            var index = i.index(i.startIndex, offsetBy: 2)
-            var mySubstring = i[..<index]
-            var lineString = i[..<index]
-            
-            if mySubstring == "##"{
-                // Grabs the whole line
-                index = i.index(i.startIndex, offsetBy: i.count)
-                mySubstring = i[..<index]
-                // Drops the first two characters of the line (ie. '##')
-                mySubstring = mySubstring.dropFirst().dropFirst()
-                
-                // Add each item to the global questions list array
-                // the +"" is to convert a subsequence to a string
-                questionTitleList.append(mySubstring+"")
-            }
-            else if(mySubstring == "^^"){
-                // Stop the loop. Its all done
-                return;
-            }
-            else if (mySubstring == "::"){
-                // End of Answers. New list can start after this
-                // Add questions array to arraylist
-                questionsListArray.append(qArray)
-                // add answers array to arralist
-                answersListArray.append(aArray)
-                // clear both array
-                qArray.removeAll()
-                aArray.removeAll()
-                isAnswer = false
-            }
-            else if (mySubstring == "//"){
-                // End of Questions
-                isAnswer = true
-            }
-            else{
-                index = i.index(i.startIndex, offsetBy: i.count)
-                lineString = i[..<index]
-                if(isAnswer){
-                    // Add strings to answers Array
-                    aArray.append(lineString+"")
-                }
-                else{
-                    // Add string to questions array
-                    qArray.append(lineString+"")
- 
-                }
-            }
-        }
-        
-    }
+  
     
     
     /* Shows an alert that will print out if the file was properly downloaded or if an error occured*/
@@ -248,7 +194,9 @@ class SettingsController: UIViewController {
     //Button functions
     //---------------------
     @IBAction func downloadQuestions(_ sender: Any) {
-        downloadQuestionsFile()
+        //downloadQuestionsFile()
+         overrideDownloadedFile(false)
+        hasTextFile = 0
     }
     
     //---------------------

@@ -39,6 +39,138 @@ func convertColors(_ r: Double, _ g: Double, _ b: Double, _ a: Double) -> UIColo
     return UIColor(red: CGFloat(r/255), green: CGFloat(g/255),blue: CGFloat(b/255), alpha:CGFloat(a))
 }
 
+
+/* Function to read a "questions.txt" file from the documents directory.
+ Currently still needs to be able to read line by line & then export each line
+ over to the modules array to be able to use the questions in the text file as questions
+ on the actual program*/
+func readFile(){
+    print("Begin reading")
+    let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    let fileURL = DocumentDirURL.appendingPathComponent("questions").appendingPathExtension("txt")
+    do {
+        // Read the file contents and saves it to a giant separated string
+        let readString = try String(contentsOf: fileURL, encoding: .utf8)
+        let myStrings = readString.components(separatedBy: .newlines)
+        
+        getQuestions(myStrings)
+    }
+    catch let error as NSError {
+        print("Failed reading from URL: \(fileURL), Error: " + error.localizedDescription)
+    }
+}
+
+func getQuestions(_ s : [String]){
+    // Clears the questionList Array
+    questionTitleList.removeAll()
+    questionsListArray.removeAll()
+    answersListArray.removeAll()
+    var isAnswer = false
+    var qArray = [String]()
+    var aArray = [String]()
+       
+    // iterates through every items in s (the file whose contents were read)
+    for i in s {
+        // Takes the first 2 letters and checks for the special symbols that define its a title '##'
+        var index = i.index(i.startIndex, offsetBy: 2)
+        var mySubstring = i[..<index]
+        var lineString = i[..<index]
+           
+        if mySubstring == "##"{
+            // Grabs the whole line
+            index = i.index(i.startIndex, offsetBy: i.count)
+            mySubstring = i[..<index]
+            // Drops the first two characters of the line (ie. '##')
+            mySubstring = mySubstring.dropFirst().dropFirst()
+               
+            // Add each item to the global questions list array
+            // the +"" is to convert a subsequence to a string
+            questionTitleList.append(mySubstring+"")
+        }
+        else if(mySubstring == "^^"){
+            // Stop the loop. Its all done
+            return;
+        }
+        else if (mySubstring == "::"){
+            // End of Answers. New list can start after this
+            // Add questions array to arraylist
+            questionsListArray.append(qArray)
+            // add answers array to arralist
+            answersListArray.append(aArray)
+            // clear both array
+            qArray.removeAll()
+            aArray.removeAll()
+            isAnswer = false
+        }
+        else if (mySubstring == "//"){
+            // End of Questions
+            isAnswer = true
+        }
+        else{
+            index = i.index(i.startIndex, offsetBy: i.count)
+            lineString = i[..<index]
+            if(isAnswer){
+                // Add strings to answers Array
+                aArray.append(lineString+"")
+            }
+            else{
+                // Add string to questions array
+                qArray.append(lineString+"")
+            }
+        }
+    }
+}
+
+
+// Send true to change the backup file's name. Send false to change the original's name
+func changeFileName(_ backup: Bool){
+    do {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let documentDirectory = URL(fileURLWithPath: path)
+        var originPath = documentDirectory.appendingPathExtension("questions_backup.txt")
+        if(!backup){
+            originPath = documentDirectory.appendingPathComponent("questions.txt")
+        }
+        var destinationPath = documentDirectory.appendingPathComponent("questions.txt")
+        if(!backup){
+            destinationPath = documentDirectory.appendingPathComponent("questions_backup.txt")
+        }
+        try FileManager.default.moveItem(at: originPath, to: destinationPath)
+    } catch {
+        print(error)
+    }
+}
+
+func deleteBackupFile(){
+    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+    let url = NSURL(fileURLWithPath: path)
+    if let pathComponent = url.appendingPathComponent("questions_backup.txt") {
+        let filePath = pathComponent.path
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: filePath) {
+            print("FILE AVAILABLE")
+            do {
+                try fileManager.removeItem(at: pathComponent)
+            }
+            catch{
+                print("something went wrong")
+            }
+            
+            //Delete file backup file
+        } else {
+            print("FILE NOT AVAILABLE")
+        }
+    } else {
+        print("FILE PATH NOT AVAILABLE")
+    }
+
+    //try fileManager.removeItem(atPath: filePath)
+    //} else {
+    //    print("File does not exist")
+    //}
+}
+
+
 //--------------------
 // Global Variables
 //--------------------

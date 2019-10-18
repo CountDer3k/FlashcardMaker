@@ -144,6 +144,9 @@ class ViewController: UIViewController {
             answerSlot.text = "Que:\(active_Module_q.count) Ans:\(active_Module_a.count)"
             return
         }
+        else if(questionSlotLabel.text == "Finished All Questions"){
+            
+        }
         // Shows answer to current question
         else{
             answerSlot.text = active_Module_a[counter-1]

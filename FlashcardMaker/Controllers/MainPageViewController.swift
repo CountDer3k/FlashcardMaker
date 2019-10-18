@@ -29,7 +29,7 @@ class MainPageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         // Sets background color and text
         view.backgroundColor = currentColor
         nutritionLabel.textColor = currentTextColor
-        
+        readFile()
         // Sets up the picker
         if(questionsListArray.count == 0){
             // Loads up the hardcoded answer, if nothing is downlaoded
@@ -69,8 +69,10 @@ class MainPageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // Code
-        hasTextFile = row
-        qAndA = randomizeArrays(questionsListArray[hasTextFile], answersListArray[hasTextFile])
+        if(questionsListArray.count != 0){
+            hasTextFile = row
+            qAndA = randomizeArrays(questionsListArray[hasTextFile], answersListArray[hasTextFile])
+        }
     }
     
     //---------------------
