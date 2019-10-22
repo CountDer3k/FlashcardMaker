@@ -147,18 +147,18 @@ func deleteBackupFile(){
         let filePath = pathComponent.path
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: filePath) {
-            print("FILE AVAILABLE")
+            print("FILE AVAILABLE - ON DELETE")
             do {
                 try fileManager.removeItem(at: pathComponent)
             }
             catch{
-                print("something went wrong")
+                print("something went wrong with removing file.")
             }
         } else {
-            print("FILE NOT AVAILABLE")
+            print("FILE NOT AVAILABLE - ON DELETE")
         }
     } else {
-        print("FILE PATH NOT AVAILABLE")
+        print("FILE PATH NOT AVAILABLE - ON DELETE")
     }
 }
 

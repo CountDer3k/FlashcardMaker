@@ -26,7 +26,7 @@ class SettingsController: UIViewController {
     }
     
     //---------------------
-    // Color Functions
+    // Color Setters
     //---------------------
     
     @IBAction func whiteID(_ sender: UIButton) {
@@ -71,7 +71,7 @@ class SettingsController: UIViewController {
     
     
     //---------------------
-    //Non-Button functions
+    // Color Functions
     //---------------------
     
     func changePageColors(_ c: UIColor){
@@ -196,6 +196,10 @@ class SettingsController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Got it!", style: .default))
 
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func secretFunction(_ sender: Any) {
+        showAlert("Count Der3k \n2019 \nNIce find ;) \nI love Patricia!")
     }
     
     //---------------------

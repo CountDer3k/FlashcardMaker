@@ -14,7 +14,6 @@ class MainPageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var examSegments: UISegmentedControl!
     // An array that holds an array; used to hold shuffled question and answer arrays
     var qAndA = [Array<String>]()
-    
     @IBOutlet weak var nutritionLabel: UILabel!
     @IBOutlet weak var goButton: UIButton!
     @IBOutlet weak var questionPicker: UIPickerView!
@@ -43,7 +42,6 @@ class MainPageViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             hasTextFile = 0
             qAndA = randomizeArrays(questionsListArray[hasTextFile], answersListArray[hasTextFile])
         }
-        
     }
     
     //---------------------

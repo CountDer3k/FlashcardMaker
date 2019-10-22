@@ -355,12 +355,27 @@
                                     <action selector="goBack:" destination="Ho0-cz-WUR" eventType="touchUpInside" id="9ub-ki-VFf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbf-0O-9Po">
+                                <rect key="frame" x="8" y="748" width="30" height="30"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XgA-JU-Tmy"/>
+                                    <constraint firstAttribute="width" constant="30" id="emR-mQ-IEr"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="secretFunction:" destination="Ho0-cz-WUR" eventType="touchUpInside" id="s2M-gB-DYh"/>
+                                    <outletCollection property="gestureRecognizers" destination="mRh-NJ-Zvg" appends="YES" id="PiQ-NR-K8C"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.46809529808589379" green="0.55800106240416292" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="UeL-4x-O8H" firstAttribute="top" secondItem="d6o-ku-nw9" secondAttribute="top" id="2nz-Ab-i7O"/>
                             <constraint firstItem="0ql-Vv-TVe" firstAttribute="top" secondItem="Zo3-Xv-ToX" secondAttribute="top" constant="182" id="7kg-Qg-Y31"/>
+                            <constraint firstItem="jbf-0O-9Po" firstAttribute="bottom" secondItem="d6o-ku-nw9" secondAttribute="bottom" id="G1o-IW-xqf"/>
                             <constraint firstItem="UeL-4x-O8H" firstAttribute="leading" secondItem="d6o-ku-nw9" secondAttribute="leading" constant="20" id="NL9-42-KZv"/>
+                            <constraint firstItem="jbf-0O-9Po" firstAttribute="leading" secondItem="d6o-ku-nw9" secondAttribute="leading" constant="8" id="Pot-HY-bwu"/>
                             <constraint firstItem="0ql-Vv-TVe" firstAttribute="leading" secondItem="UeL-4x-O8H" secondAttribute="leading" id="Zhc-CJ-ORw"/>
                             <constraint firstItem="nnD-yQ-RN6" firstAttribute="top" secondItem="d6o-ku-nw9" secondAttribute="top" constant="152" id="aUT-Lg-SqX"/>
                             <constraint firstItem="0ql-Vv-TVe" firstAttribute="centerX" secondItem="Zo3-Xv-ToX" secondAttribute="centerX" id="qLW-x4-c6K"/>
@@ -378,6 +393,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytC-MF-g3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <rotationGestureRecognizer id="mRh-NJ-Zvg">
+                    <connections>
+                        <action selector="secretFunction:" destination="Ho0-cz-WUR" id="pcn-qj-sxk"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-926.08695652173924" y="770.75892857142856"/>
         </scene>
@@ -393,6 +413,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="F02-vy-ZRh"/>
         <segue reference="xPX-mX-do9"/>
-        <segue reference="Xcw-in-H4Z"/>
+        <segue reference="nW2-Fe-Dzj"/>
     </inferredMetricsTieBreakers>
 </document>

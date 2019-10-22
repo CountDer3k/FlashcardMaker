@@ -29,15 +29,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Used to know if lists are even when I add a new one (checks questions & answers are equal)
-        //print("\(nutrition_q1.count) & \(nutrition_a1.count)")
-        
         // Sets background color and text
         view.backgroundColor = currentColor
         questionSlotLabel.backgroundColor = currentLabelColor
         answerSlot.backgroundColor = currentLabelColor
-        //nextButton.backgroundColor = currentButtonColor
-        //answerButton.backgroundColor = currentButtonColor
         headingLabel?.textColor = currentTextColor
         questionSlotLabel.textColor = currentTextColor
         answerSlot.textColor = currentTextColor
@@ -50,16 +45,6 @@ class ViewController: UIViewController {
     //-----------------------------
      // Button functions
      //-----------------------------
-    
-    /* What happens when the 'next' button is pressed */
-    @IBAction func nextButtonPressed(_ sender: UIButton) {
-        nextQuestion()
-    }
-    
-    /* What happens when the 'answer' button is pressed */
-    @IBAction func answerButton(_ sender: Any) {
-       showAnswer()
-    }
     
     
     /* What happens when the RESET button is pressed */
@@ -87,7 +72,7 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: "Instructions", message:
             whatToSay, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Got it!", style: .default))
-
+            // Shows the alert
             self.present(alertController, animated: true, completion: nil)
     }
     
@@ -153,10 +138,10 @@ class ViewController: UIViewController {
             return
         }
         else if(questionSlotLabel.text == "Finished All Questions"){
-            
+                // Do nothing here on purpose
         }
-        // Shows answer to current question
         else{
+            // Shows answer to current question
             answerSlot.text = active_Module_a[counter-1]
         }
     }
