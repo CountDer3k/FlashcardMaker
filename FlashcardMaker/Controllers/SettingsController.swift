@@ -153,22 +153,19 @@ class SettingsController: UIViewController {
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
         let request = URLRequest(url:fileURL!)
-        print("coparing now")
         let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
             if let tempLocalUrl = tempLocalUrl, error == nil {
                 // Success
-                print("first success")
                 if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                    print("DOWNLOAD_CODE: " + String(statusCode))
                     alertString = "Successfully updated questions"
-                    print("CODE_INNER_SUCCESS: " + alertString)
-                    print("Successfully downloaded. Status code: \(statusCode)")
+                    self.showAlert(alertString, "Download Complete", "Got it!")
                     // Moves the file to the documents section
                     do {
                         try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
                     }
                     catch (let writeError) {
                         alertString = "Something went wrong. Text Der3k for file"
-                        print("CODE_INNER_FAILURE: " + alertString)
                         print("Error creating a file D3 \(destinationFileUrl) : \(writeError)")
                     }
                 }
@@ -179,8 +176,8 @@ class SettingsController: UIViewController {
                 changeFileName(true)
             }
         }
+        //TODO:- This doesn't work. Need to check how to keep the string outside of its little inner self circle thing
         alertText = alertString
-        print("CODE_OUTTER: " + alertString)
         task.resume()
     }
 
@@ -190,16 +187,16 @@ class SettingsController: UIViewController {
     
     
     /* Shows an alert that will print out if the file was properly downloaded or if an error occured*/
-    func showAlert(_ whatToSay : String) {
-        let alertController = UIAlertController(title: "Download Complete", message:
+    func showAlert(_ whatToSay : String, _ title: String, _ buttonTitle: String) {
+        let alertController = UIAlertController(title: title, message:
             whatToSay, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Got it!", style: .default))
+        alertController.addAction(UIAlertAction(title: buttonTitle, style: .default))
 
         self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func secretFunction(_ sender: Any) {
-        showAlert("Count Der3k \n2019 \nNIce find ;) \nI love Patricia!")
+        showAlert("\nNice find ;) \nCount Der3k \n2019 \nI love Patricia!", "Easter Egg", ";)")
     }
     
     //---------------------
@@ -208,7 +205,7 @@ class SettingsController: UIViewController {
     @IBAction func downloadQuestions(_ sender: Any) {
         //downloadQuestionsFile()
         overrideDownloadedFile(false)
-        showAlert(alertText)
+        showAlert(alertText, "Download Complete", "Got it!")
         hasTextFile = 0
     }
     
