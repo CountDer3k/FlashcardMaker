@@ -36,8 +36,8 @@ class ViewController: UIViewController {
         view.backgroundColor = currentColor
         questionSlotLabel.backgroundColor = currentLabelColor
         answerSlot.backgroundColor = currentLabelColor
-        nextButton.backgroundColor = currentButtonColor
-        answerButton.backgroundColor = currentButtonColor
+        //nextButton.backgroundColor = currentButtonColor
+        //answerButton.backgroundColor = currentButtonColor
         headingLabel?.textColor = currentTextColor
         questionSlotLabel.textColor = currentTextColor
         answerSlot.textColor = currentTextColor
@@ -82,6 +82,14 @@ class ViewController: UIViewController {
     }
     
    
+    @IBAction func Instructions_button(_ sender: Any) {
+        let whatToSay = "Swipe Left = next question \nSwipe Right = previous question \nDouble Tap = show answer"
+        let alertController = UIAlertController(title: "Instructions", message:
+            whatToSay, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Got it!", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+    }
     
     
     //---------------------------------------------

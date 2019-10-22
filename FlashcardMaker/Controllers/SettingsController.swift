@@ -13,15 +13,20 @@ class SettingsController: UIViewController {
     @IBOutlet weak var colorThemeLabel: UILabel!
     @IBOutlet weak var themeLabel: UILabel!
     var lastCaller = String()
+    var alertText = "Download probably failed"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Sets background color and text
         view.backgroundColor = currentColor
+        colorThemeLabel.textColor = currentTextColor
+        themeLabel.textColor = currentTextColor
+        themeLabel.text = "Theme: " + currentTheme
     }
     
     //---------------------
-    // Colors
+    // Color Functions
     //---------------------
     
     @IBAction func whiteID(_ sender: UIButton) {
@@ -30,7 +35,6 @@ class SettingsController: UIViewController {
         changeLabels(214, 214, 214, 1)
         changeButtons(214, 214, 214, 1)
         changeThemeText("Marble")
-        
     }
     
     @IBAction func blackID(_ sender: UIButton) {
@@ -114,13 +118,14 @@ class SettingsController: UIViewController {
         if let pathComponent = url.appendingPathComponent("questions.txt") {
             let filePath = pathComponent.path
             let fileManager = FileManager.default
+            print("about to compare")
             if fileManager.fileExists(atPath: filePath) {
                 print("FILE AVAILABLE")
                 // if it exists, then change the name to a backup
                 changeFileName(backup)
                 // Download new file
                 downloadQuestionsFile()
-                //Delete file backup file
+                //Delete backup file
                 deleteBackupFile()
             } else {
                 print("FILE NOT AVAILABLE")
@@ -134,35 +139,36 @@ class SettingsController: UIViewController {
 
     
     
-    /* Function to download the questions file from my google drive*/
+    /* Function to download the questions file from my google drive
+       if file exists, then change the name, until the new one is downloaded, then delete the old one
+       If the download fails, rename the old file to one can be used
+    */
     func downloadQuestionsFile(){
-        // Create destination URL
-        
-        // if file exists, then change the name, until the new one is downloaded, then delete the old one
-        // If the download fails, rename the old file to one can be used
-            
+        // Create destination URL    
         let documentsUrl:URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL!
         let destinationFileUrl = documentsUrl.appendingPathComponent("questions.txt")
-               
+        var alertString = ""
         //Create URL to the source file you want to download
         let fileURL = URL(string: "https://drive.google.com/uc?id=1oS654WdhWcvo4hJWdBrln7kpmVaC8XUu&export=download")
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
         let request = URLRequest(url:fileURL!)
+        print("coparing now")
         let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
             if let tempLocalUrl = tempLocalUrl, error == nil {
                 // Success
+                print("first success")
                 if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                    self.showAlert("Successfully updated questions")
+                    alertString = "Successfully updated questions"
+                    print("CODE_INNER_SUCCESS: " + alertString)
                     print("Successfully downloaded. Status code: \(statusCode)")
-                        
-                    //*********************************
                     // Moves the file to the documents section
                     do {
                         try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
                     }
                     catch (let writeError) {
-                        self.showAlert("Something went wrong. Text Der3k for file")
+                        alertString = "Something went wrong. Text Der3k for file"
+                        print("CODE_INNER_FAILURE: " + alertString)
                         print("Error creating a file D3 \(destinationFileUrl) : \(writeError)")
                     }
                 }
@@ -173,6 +179,8 @@ class SettingsController: UIViewController {
                 changeFileName(true)
             }
         }
+        alertText = alertString
+        print("CODE_OUTTER: " + alertString)
         task.resume()
     }
 
@@ -195,7 +203,8 @@ class SettingsController: UIViewController {
     //---------------------
     @IBAction func downloadQuestions(_ sender: Any) {
         //downloadQuestionsFile()
-         overrideDownloadedFile(false)
+        overrideDownloadedFile(false)
+        showAlert(alertText)
         hasTextFile = 0
     }
     
