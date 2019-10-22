@@ -185,6 +185,9 @@ class SettingsController: UIViewController {
     
   
     
+    @IBAction func EdgeSwipe(_ sender: Any) {
+        performSegue(withIdentifier: "settingsToMain", sender: self)
+    }
     
     /* Shows an alert that will print out if the file was properly downloaded or if an error occured*/
     func showAlert(_ whatToSay : String, _ title: String, _ buttonTitle: String) {
@@ -198,6 +201,8 @@ class SettingsController: UIViewController {
     @IBAction func secretFunction(_ sender: Any) {
         showAlert("\nNice find ;) \nCount Der3k \n2019 \nI love Patricia!", "Easter Egg", ";)")
     }
+    
+    
     
     //---------------------
     //Button functions
